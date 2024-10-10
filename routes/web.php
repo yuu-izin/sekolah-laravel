@@ -1,10 +1,13 @@
 <?php
 
+use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeachersController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,13 +35,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/classes/{class}', [ClassesController::class, 'destroy'])->name('classes.destroy');
 
     // Student
-    Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
     Route::get('/students', [StudentController::class, 'index'])->name('students.index');
-    Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
     Route::post('/students', [StudentController::class, 'store'])->name('students.store');
+    Route::get('/students/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/students/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
+    // Teacher
+    Route::get('/teachers', [TeachersController::class, 'index'])->name('teachers.index');
+    Route::get('/teachers/create', [TeachersController::class, 'create'])->name('teachers.create');
+    Route::post('/teachers', [TeachersController::class, 'store'])->name('teachers.store');
+    Route::get('/teachers/{teacher}/edit', [TeachersController::class, 'edit'])->name('teachers.edit');
+    Route::put('/teachers/{teacher}', [TeachersController::class, 'update'])->name('teachers.update');
+    Route::delete('/teachers/{teacher}', [TeachersController::class, 'destroy'])->name('teachers.destroy');
+
+    // subject
+    Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
+    Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
+    Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
+    Route::get('/subjects/{subject}/edit', [SubjectController::class, 'edit'])->name('subjects.edit');
+    Route::put('/subjects/{subject}', [SubjectController::class, 'update'])->name('subjects.update');
+    Route::delete('/subjects/{subject}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

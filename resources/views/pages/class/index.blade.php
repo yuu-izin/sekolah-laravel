@@ -27,25 +27,40 @@
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3">Nama Kelas</th>
-                                <th class="px-6 py-3">No. Kelas</th>
-                                <th class="px-6 py-3">Siswa</th>
-                                <th class="px-6 py-3">Tanggal Dibuat</th>
-                                <th class="px-6 py-3">Action</th>
+                                <th class="px-6 py-3">
+                                    Nama Kelas
+                                </th>
+                                <th class="px-6 py-3">
+                                    No. Kelas
+                                </th>
+                                <th class="px-6 py-3">
+                                    Siswa
+                                </th>
+                                <th class="px-6 py-3">
+                                    Tanggal Dibuat
+                                </th>
+                                <th class="px-6 py-3">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($classes as $class)
-                                <tr class="bg-white border-b">
-                                    <td class="px-6 py-4 font-medium text-gray-900">{{ $class->name }}</td>
-                                    <td class="px-6 py-4">{{ $class->class_number }}</td>
+                        @foreach ($classes as $class)
+                            <tr class="bg-white border-b">
+                                    <td class="px-6 py-4 font-medium text-gray-900">
+                                        {{ $class->name }}
+                                    </td>
                                     <td class="px-6 py-4">
-                                        {{-- Displaying student names --}}
+                                        {{ $class->class_number }}
+                                    </td>
+                                    <td class="px-6 py-4">
                                         @foreach ($class->students as $student)
                                             <div>{{ $loop->iteration }}. {{ $student->name }}</div>
                                         @endforeach
                                     </td>
-                                    <td class="px-6 py-4">{{ $class->created_at }}</td>
+                                    <td class="px-6 py-4">
+                                        {{ $class->created_at }}
+                                    </td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('classes.edit', $class->id) }}" class="text-blue-950 hover:underline">Edit</a>
                                         <form action="{{ route('classes.destroy', $class->id) }}" method="POST" class="inline">

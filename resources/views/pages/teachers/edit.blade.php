@@ -3,12 +3,12 @@
         <div class="flex justify-between">
             <div>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Halaman Edit Siswa
+                    Halaman Edit Guru
                 </h2>
-                <div class="text-sm text-gray-500">Halaman untuk mengedit Data Siswa</div>
+                <div class="text-sm text-gray-500">Halaman untuk mengedit Data Guru</div>
             </div>
             <div>
-                <a href="{{ route('students.index') }}" class="bg-blue-950 text-white rounded-md py-2 px-4 text-sm">Kembali</a>
+                <a href="{{ route('teachers.index') }}" class="bg-blue-950 text-white rounded-md py-2 px-4 text-sm">Kembali</a>
             </div>
         </div>
     </x-slot>
@@ -30,45 +30,53 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('students.update', $student->id) }}" method="POST" class="max-w-sm mx-auto">
+                    <form action="{{ route('teachers.update', $teacher->id) }}" method="POST" class="max-w-sm mx-auto">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-5">
-                            <label for="class_id" class="block mb-2 text-sm font-medium text-gray-900">Pilih Kelas</label>
-                            <select name="class_id" class="form-control">
-                                @foreach($classes as $kelas)
-                                    <option value="{{ $kelas->id }}" {{ $kelas->id == $student->class_id ? 'selected' : '' }}>
-                                        {{ $kelas->name }}
-                                    </option>
+                            <label for="subject_id" class="block mb-2 text-sm font-medium text-gray-900">Mata Pelajaran</label>
+                            <select name="subject_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                required>
+                                <option value="">Pilih Mata Pelajaran</option>
+                                @foreach ($subjects as $subject)
+                                    <option value="{{ $subject->id }}" {{ $subject->id == $teacher->subject_id ? 'selected' : '' }}>{{ $subject->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-5">
+                            <label for="nidn" class="block mb-2 text-sm font-medium text-gray-900">NIDN</label>
+                            <input type="text" name="nidn" value="{{ $teacher->nidn }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan NIDN" required />
+                        </div>
+
+                        <div class="mb-5">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                            <input type="text" name="name" value="{{ $student->name }}"
+                            <input type="text" name="name" value="{{ $teacher->name }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan Nama" required />
                         </div>
 
                         <div class="mb-5">
-                            <label for="nip" class="block mb-2 text-sm font-medium text-gray-900">NIP</label>
-                            <input type="text" name="nip" value="{{ $student->nip }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="Masukkan NIP" required />
-                        </div>
-
-                        <div class="mb-5">
-                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">No. Telepon</label>
-                            <input type="text" name="phone" value="{{ $student->phone }}"
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Telepon</label>
+                            <input type="text" name="phone" value="{{ $teacher->phone }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan No. Telepon" required />
                         </div>
 
                         <div class="mb-5">
+                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                            <input type="text" name="address" value="{{ $teacher->address }}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Masukkan Alamat" required />
+                        </div>
+
+                        <div class="mb-5">
                             <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Jenis Kelamin</label>
-                            <input type="text" name="gender" value="{{ $student->gender }}"
+                            <input type="text" name="gender" value="{{ $teacher->gender }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan Jenis Kelamin" required />
                         </div>

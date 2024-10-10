@@ -24,14 +24,26 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('classes.index')" :active="request()->routeIs('classesw.*')">
+                    <x-nav-link :href="route('classes.index')" :active="request()->routeIs('classes.*')">
                         {{ __('Classes') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('studentssw.*')">
+                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')">
                         {{ __('Students') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.*')">
+                        {{ __('Teachers') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('subjects.index')" :active="request()->routeIs('subjects.*')">
+                        {{ __('Subjects') }}
                     </x-nav-link>
                 </div>
             </div>

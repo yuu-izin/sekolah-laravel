@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Halaman Siswa
+            Halaman Guru
         </h2>
-        <div class="text-sm text-gray-500">Halaman untuk memanajemen Data Siswa</div>
+        <div class="text-sm text-gray-500">Halaman untuk memanajemen Data Guru</div>
     </x-slot>
 
     <div class="py-12">
@@ -19,8 +19,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-md p-4 mb-4">
                 <div class="flex justify-between mb-3">
-                    <div class="mb-2 font-bold">Data Siswa</div>
-                    <a href="{{ route('students.create') }}" class="bg-blue-950 text-white rounded-md text-sm py-2 px-3">Tambah Data Siswa</a>
+                    <div class="mb-2 font-bold">Data Guru</div>
+                    <a href="{{ route('teachers.create') }}" class="bg-blue-950 text-white rounded-md text-sm py-2 px-3">Tambah Data Guru</a>
                 </div>
 
                 <div class="relative overflow-x-auto">
@@ -28,7 +28,7 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3">
-                                    NIP
+                                    NIDN
                                 </th>
                                 <th class="px-6 py-3">
                                     Nama
@@ -37,10 +37,13 @@
                                     Telepon
                                 </th>
                                 <th class="px-6 py-3">
+                                    Alamat
+                                </th>
+                                <th class="px-6 py-3">
                                     Jenis Kelamin
                                 </th>
                                 <th class="px-6 py-3">
-                                    Kelas
+                                    Mapel
                                 </th>
                                 <th class="px-6 py-3">
                                     Tanggal Dibuat
@@ -51,27 +54,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($students as $student)
+                            @foreach ($teachers as $teacher)
                                 <tr class="bg-white border-b">
-                                    <td class="px-6 py-4 font-medium text-gray-900">{{ $student->nip }}</td>
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $teacher->nidn }}
+                                    </th>
                                     <td class="px-6 py-4">
-                                        {{ $student->name }}
+                                        {{ $teacher->name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $student->phone }}
+                                        {{ $teacher->phone }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $student->gender }}
+                                        {{ $teacher->address }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $student->kelas->name ?? 'N/A' }}
+                                        {{ $teacher->gender }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $student->created_at }}
+                                        {{ $teacher->subject->name ?? 'No Subject' }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('students.edit', $student->id) }}" class="text-blue-950 hover:underline">Edit</a>
-                                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="inline">
+                                        {{ $teacher->created_at }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('teachers.edit', $teacher->id) }}" class="text-blue-950 hover:underline">Edit</a>
+                                        <form action="{{ route('teachers.destroy', $teacher->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:underline">Hapus</button>
